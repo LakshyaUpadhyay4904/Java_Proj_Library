@@ -31,7 +31,6 @@ public class StudentManagement extends JPanel implements ActionListener {
 
     // Layout
     JPanel buttonPanel = new JPanel();
-    buttonPanel.setSize(WIDTH, 50);
     buttonPanel.add(addButton);
     buttonPanel.add(editButton);
     buttonPanel.add(deleteButton);
@@ -43,19 +42,12 @@ public class StudentManagement extends JPanel implements ActionListener {
 
     //JPanel mainPanel = new JPanel();
     // // Make a grid layout with 2 rows and 1 column
-     setLayout(new GridLayout(2,1,10,10));
-    // // Add buttonPanel to the first row
-    // add(buttonPanel);
+    //setLayout(new GridLayout(2,1,10,10));
 
-    // // Add scrollPane to the second row
-    // add(scrollPane);
-
-
-
+    //add(Box.createVerticalGlue());
     add(buttonPanel, BorderLayout.NORTH);
     add(scrollPane, BorderLayout.CENTER);
-    //mainPanel.setVisible(true);
-    //add(mainPanel,BorderLayout.CENTER);
+     
     showStudentList();
 
   }
@@ -82,8 +74,6 @@ public class StudentManagement extends JPanel implements ActionListener {
     } else if (e.getSource() == editButton) {
       int selectedRow = studentTable.getSelectedRow();
       if (selectedRow != -1) {
-        //Student student = (Student) studentTable.getSelectedRow(selectedRow);
-        // Get the selected row data
         Student student = (Student) Student.getStudent(selectedRow);
         StudentWindow studentWindow = new StudentWindow(student);
         if (studentWindow.ShowDialogBox()) {

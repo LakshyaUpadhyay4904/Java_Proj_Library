@@ -14,7 +14,8 @@ public class MainWindow extends JFrame implements ActionListener {
     JButton ReturnBtn;
     JButton LogoutBtn;
     JPanel menuPanel;
-    StudentManagement studentManagement;
+    StudentManagement studentManagement = new StudentManagement();
+    BookManagement bookManagement = new BookManagement();
 
     MainWindow() {
 
@@ -51,14 +52,18 @@ public class MainWindow extends JFrame implements ActionListener {
             IssueBtn = new JButton("Issue");
             ReturnBtn = new JButton("Return");
             LogoutBtn = new JButton("Logout");
-    
+            StudentBtn.setSelected(true);
+
             StudentBtn.addActionListener(this);
+            BookBtn.addActionListener(this);
+            IssueBtn.addActionListener(this);
+            ReturnBtn.addActionListener(this);
             menuPanel.add(StudentBtn);
             menuPanel.add(BookBtn);
             menuPanel.add(IssueBtn);
             menuPanel.add(ReturnBtn);
             menuPanel.add(LogoutBtn);
-    
+            menuPanel.setBackground(new Color(128,128,255));
             add(menuPanel, BorderLayout.NORTH);
     
             // mainPane = new JTabbedPane();
@@ -75,6 +80,10 @@ public class MainWindow extends JFrame implements ActionListener {
             studentManagement = new StudentManagement();
             add(studentManagement, BorderLayout.CENTER);
             studentManagement.setVisible(true);
+            // bookManagement = new BookManagement();
+            // add(bookManagement, BorderLayout.CENTER);
+            // bookManagement.setVisible(false);
+
             setVisible(true);
 
         } catch (Exception ex) {
@@ -88,12 +97,21 @@ public class MainWindow extends JFrame implements ActionListener {
     @Override
   public void actionPerformed(ActionEvent e) {
       try {
+            studentManagement.setVisible(false);
+            bookManagement.setVisible(false);
+
+            remove(studentManagement);
+            remove(bookManagement);
           if (e.getSource() == StudentBtn) {
               //add code to open student management window
-              
+                studentManagement.setVisible(true);
+                add(studentManagement, BorderLayout.CENTER);
+
               }
               else if (e.getSource() == BookBtn) {
-              System.out.println("Book Button Clicked");
+                //add code to open book management window
+                bookManagement.setVisible(true);
+                add(bookManagement, BorderLayout.CENTER);
               }
               else if (e.getSource() == IssueBtn) {
               System.out.println("Issue Button Clicked");
